@@ -1,7 +1,7 @@
 {
   "name": "buddybirdy",
   "version": "1.0.0",
-  "description": "> socket.io를 활용한 실시간 채팅앱    >",
+  "description": "socket.io를 활용한 실시간 채팅앱",
   "main": "index.js",
   "scripts": {
     "frontend-build": "cd frontend && npm install && npm run build && cd ../",
