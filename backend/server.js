@@ -16,8 +16,6 @@ connectDB();
 // to accept JSON data
 app.use(express.json());
 
-
-
 app.use('/api/user', userRoutes)
 app.use('/api/chat', chatRoutes)
 app.use('/api/message', messageRoutes)
@@ -26,13 +24,13 @@ console.log(__dirname);
 
 // deploy 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('build'));
+  app.use(express.static(path.join(__dirname, 'build')));
 
   // app.get("*", (req, res) => {
   //   res.sendFile(__dirname + '/build/index.html')
   // })
   app.get("/", (req, res) => {
-    res.sendFile(__dirname + '/build/index.html')
+    res.sendFile(path.join(__dirname, 'build/index.html'))
   })
 } else {
   app.get('/', (req, res) => {
