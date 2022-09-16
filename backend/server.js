@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('build'));
 
   app.get("*", (req, res) => {
-    res.sendFile(__dirname + '/build/index.html')
+    res.sendFile(__dirname + '/build/static/index.html')
   })
 } else {
   app.get('/', (req, res) => {
