@@ -4,9 +4,11 @@
   "description": "> socket.io를 활용한 실시간 채팅앱    >",
   "main": "index.js",
   "scripts": {
-    "heroku-prebuild": "cd frontend && npm install && npm run build && mv build ../backend",
+    "frontend-build": "cd frontend && npm install && npm run build && cd ../",
+    "backend-build": "cd backend && npm install --dev && cd ..",
+    "heroku-prebuild": "npm run frontend-build && npm run backend-build && mv ./frontend/build ./backend/build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "cd backend && npm install && npm run start"
+    "start": "cd backend && node server.js"
   },
   "keywords": [],
   "author": "kkwakkwake",
