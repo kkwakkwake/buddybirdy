@@ -26,7 +26,8 @@ console.log(__dirname);
 
 // deploy 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('build'));
+  // app.use(express.static('build'));
+  app.use('/buddybirdy', express.static(path.join(__dirname, '/build')))
 
   app.get("*", (req, res) => {
     res.sendFile(__dirname + '/build/index.html')
