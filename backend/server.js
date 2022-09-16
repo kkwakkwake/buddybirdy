@@ -30,7 +30,7 @@ if (process.env.NODE_ENV === 'production') {
   //   res.sendFile(__dirname + '/build/index.html')
   // })
   app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, 'build/index.html'))
+    res.sendFile(path.join(__dirname, 'build', 'index.html'))
   })
 } else {
   app.get('/', (req, res) => {
@@ -45,8 +45,6 @@ if (process.env.NODE_ENV === 'production') {
 
 
 // deploy done
-
-
 
 app.use(notFound)
 app.use(errorHandler)
