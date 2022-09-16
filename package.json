@@ -1,0 +1,14 @@
+{
+  "name": "buddybirdy",
+  "version": "1.0.0",
+  "description": "> socket.io를 활용한 실시간 채팅앱    >",
+  "main": "index.js",
+  "scripts": {
+    "heroku-prebuild": "cd frontend && npm install && npm run build && mv build ../backend",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cd backend && npm install && npm run start"
+  },
+  "keywords": [],
+  "author": "kkwakkwake",
+  "license": "ISC"
+}
