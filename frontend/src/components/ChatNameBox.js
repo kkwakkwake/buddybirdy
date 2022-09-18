@@ -10,9 +10,11 @@ const ChatNameBox = ({ chat, loggedUser }) => {
   const [groupChatName, setGroupChatName] = useState('');
 
   useEffect(() => {
+    // 그룹채팅일 때
     if (chat && !chat?.isGroupChat) {
       setGroupChatName(getSender(loggedUser, chat.users))
     } else {
+      // 그룹채팅 아닐 때
       setGroupChatName(chat.chatName)
     }
   }, [chat, loggedUser])

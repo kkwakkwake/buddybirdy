@@ -66,6 +66,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
   useEffect(() => {
     fetchMessages();
+    // 선택된 방 변수에 저장해서 비교
     selectedChatCompare = selectedChat;
   }, [selectedChat]);
 
@@ -90,7 +91,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       try {
         const config = {
           headers: {
-            "Content-Type": "application/json",
             Authorization: `Bearer ${user.token}`
           }
         }
@@ -115,10 +115,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         })
       }
     }
-  }
-
-  const handleTyping = (e) => {
-    setNewMessage(e.target.value);
   }
 
   return (
@@ -162,7 +158,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             <div onKeyDown={handleSendMessage} required className='mt-3'>
               <input className='bg-slate-200 w-full p-2 rounded-lg'
                 placeholder='메세지를 입력하세요'
-                onChange={handleTyping}
+                onChange={(e) => setNewMessage(e.target.value)}
                 value={newMessage}
               />
             </div>

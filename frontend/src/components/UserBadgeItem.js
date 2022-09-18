@@ -6,14 +6,15 @@ import { CloseIcon } from '@chakra-ui/icons';
 const UserBadgeItem = ({ user, handleFunction }) => {
   return (
     <Box
-      px={2}
+      px={4}
       py={1}
       borderRadius='lg'
       m={1}
       mb={2}
       variant='solid'
-      fontSize={12}
-      backgroundColor='pink'
+      fontSize={14}
+      fontWeight='bold'
+      backgroundColor='#BEE3F8'
       color='black'
       cursor='pointer'
       onClick={handleFunction}

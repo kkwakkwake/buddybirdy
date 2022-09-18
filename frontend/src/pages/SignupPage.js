@@ -32,11 +32,11 @@ const SignupPage = () => {
     }
   }, [navigate])
 
-  const postDetails = async (pics) => {
-
+  const handleRegisterPic = async (pics) => {
+    // 사진 선택 버튼 누르고 아무것도 안 했을 때
     if (pics === undefined || pics === null) {
       toast({
-        title: '이미지를 선택해주세요!',
+        title: '올바른 이미지를 선택해주세요!',
         status: 'warning',
         duration: 5000,
         isClosable: true,
@@ -46,27 +46,20 @@ const SignupPage = () => {
     }
 
     if (pics.type === 'image/jpeg' || pics.type === 'image/png') {
-      const data = new FormData();
-      data.append('file', pics);
-      data.append('upload_preset', 'aqnz19uc');
-      data.append('cloud_name', 'dhajlbsaa');
+      const userpic = new FormData();
+      userpic.append('file', pics);
+      userpic.append('upload_preset', 'aqnz19uc');
+      userpic.append('cloud_name', 'dhajlbsaa');
 
       try {
-        const response = await fetch('https://api.cloudinary.com/v1_1/dhajlbsaa/image/upload', {
-          method: 'post',
-          body: data
-        })
-        const urlData = await response.json();
-        console.log(urlData.url.toString())
-        setPic(urlData.url.toString());;
-
+        const { data } = await axios.post('https://api.cloudinary.com/v1_1/dhajlbsaa/image/upload', userpic);
+        setPic(data.url);
       } catch (error) {
         console.log(error);
-
       }
     } else {
       toast({
-        title: 'Please Select an Image!',
+        title: '올바른 이미지를 선택해주세요!',
         status: 'warning',
         duration: 5000,
         isClosable: true,
@@ -98,20 +91,13 @@ const SignupPage = () => {
         isClosable: true,
         position: 'bottom',
       })
-
       return;
     }
 
     try {
-      const config = {
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      }
-
       const { data } = await axios.post('/api/user', {
         name, email, password, pic
-      }, config)
+      })
 
       toast({
         title: '가입 성공!',
@@ -125,7 +111,7 @@ const SignupPage = () => {
       navigate('/chats', { replace: true })
     } catch (error) {
       toast({
-        title: 'Error Occured!',
+        title: '오류 발생!',
         description: error.response.data.message,
         status: 'error',
         duration: 5000,
@@ -182,7 +168,7 @@ const SignupPage = () => {
             <label>프로필 사진 * </label>
             <input type="file" className='mt-2'
               required
-              onChange={(e) => postDetails(e.target.files[0])}
+              onChange={(e) => handleRegisterPic(e.target.files[0])}
             />
             <button className='inline p-2 px-5 border-yellow-300 rounded-md bg-yellow-300 border-0 self-end mt-10 hover:text-white hover:scale-110'
               onClick={handleSubmit}
