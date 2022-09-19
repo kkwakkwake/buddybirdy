@@ -20,36 +20,38 @@ const GroupChatModal = ({ children }) => {
 
   const toast = useToast();
 
-  const handleSearch = async (query) => {
-    // input에 입력한 값이 query
-    setSearch(query);
-    if (!query) {
+  const handleSearch = async (e) => {
+    if (!search) {
       return;
     }
 
-    try {
-      setLoading(true);
-      const config = {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      };
-      const { data } = await axios.get(`/api/user?search=${search}`, config);
-      console.log(data)
+    if (e.keyCode === 13) {
+      try {
+        setLoading(true);
+        const config = {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        };
+        const { data } = await axios.get(`/api/user?search=${search}`, config);
+        console.log(data)
 
-      setLoading(false);
-      setSearchResult(data);
-    } catch (error) {
-      toast({
-        title: "에러 발생!",
-        description: "Failed to Load the Search Results",
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-        position: "bottom-left",
-      });
+        setLoading(false);
+        setSearchResult(data);
+        setSearch('');
+      } catch (error) {
+        toast({
+          title: "에러 발생!",
+          description: "Failed to Load the Search Results",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+          position: "bottom-left",
+        });
+      }
     }
-  };
+
+  }
 
   const handleSubmit = async () => {
     if (!groupChatName || !selectedUsers) {
@@ -141,11 +143,14 @@ const GroupChatModal = ({ children }) => {
                 onChange={(e) => setGroupChatName(e.target.value)}
               />
             </FormControl>
-            <FormControl>
+            <FormControl className='w-full flex gap-2'>
               <Input
+                className='w-3/5'
                 placeholder="버디를 추가하세요."
                 mb={1}
-                onChange={(e) => handleSearch(e.target.value)}
+                value={search}
+                onKeyDown={handleSearch}
+                onChange={(e) => setSearch(e.target.value)}
               />
             </FormControl>
             <Box
@@ -173,7 +178,7 @@ const GroupChatModal = ({ children }) => {
             )}
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme='yellow' onClick={handleSubmit}>Close</Button>
+            <Button colorScheme='yellow' onClick={handleSubmit}>완료</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

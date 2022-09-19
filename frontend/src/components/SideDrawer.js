@@ -55,7 +55,6 @@ const SideDrawer = () => {
 
     try {
       setLoading(true);
-
       const config = {
         headers: {
           Authorization: `Bearer ${user.token}`,
@@ -85,7 +84,6 @@ const SideDrawer = () => {
       setLoadingChat(true);
       const config = {
         headers: {
-          "Content-type": "application/json",
           Authorization: `Bearer ${user.token}`,
         },
       };
@@ -97,7 +95,7 @@ const SideDrawer = () => {
       onClose();
     } catch (error) {
       toast({
-        title: "Error fetching the chat",
+        title: "불러올 수 없습니다.",
         description: error.message,
         status: "error",
         duration: 5000,

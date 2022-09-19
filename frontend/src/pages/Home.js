@@ -14,7 +14,6 @@ const Home = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-
   const toast = useToast()
 
   const handleShow = (e) => {
@@ -33,20 +32,13 @@ const Home = () => {
         isClosable: true,
         position: 'bottom',
       })
-
       return;
     }
 
     try {
-      const config = {
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      }
-
       const { data } = await axios.post('/api/user/login', {
         email, password
-      }, config)
+      })
 
       toast({
         title: '로그인 성공!',
@@ -57,7 +49,8 @@ const Home = () => {
       });
 
       localStorage.setItem('userInfo', JSON.stringify(data))
-
+      // context에서 navigate될 때마다, localStorage.get 실행해서 로그인 상태확인
+      // context에서 유저정보 업데이트 
       navigate('/chats', { replace: true })
     } catch (error) {
       toast({

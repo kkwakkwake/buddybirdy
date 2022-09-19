@@ -11,9 +11,10 @@ import axios from "axios";
 import { ChatState } from "../context/ChatProvider";
 
 const MyChats = ({ fetchAgain }) => {
+  // fetchAgain == false
   const [loggedUser, setLoggedUser] = useState();
 
-  const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
+  const { selectedChat, user, chats, setChats } = ChatState();
 
   const toast = useToast();
 
@@ -26,6 +27,7 @@ const MyChats = ({ fetchAgain }) => {
         },
       };
 
+      // 유저에 맞는 채팅 불러오기
       const { data } = await axios.get("/api/chat", config);
       setChats(data);
     } catch (error) {
@@ -41,6 +43,7 @@ const MyChats = ({ fetchAgain }) => {
   };
 
   useEffect(() => {
+    // 로그인된 유저정보 저장하고, 채팅 불러오기
     setLoggedUser(JSON.parse(localStorage.getItem("userInfo")));
     fetchChats();
   }, [fetchAgain]);

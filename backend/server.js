@@ -6,8 +6,7 @@ const userRoutes = require('./routes/userRoutes');
 const chatRoutes = require('./routes/chatRoutes');
 const messageRoutes = require('./routes/messageRoutes')
 const { notFound, errorHandler } = require('./middlewares/errorMiddleware')
-const path = require('path');
-
+//const path = require('path');
 
 const app = express();
 dotenv.config();
@@ -15,6 +14,11 @@ connectDB();
 
 // to accept JSON data
 app.use(express.json());
+
+// development
+// app.get('/', (req, res) => {
+//   res.send('API is Running')
+// });
 
 app.use('/api/user', userRoutes)
 app.use('/api/chat', chatRoutes)
@@ -37,6 +41,8 @@ if (process.env.NODE_ENV === 'production') {
     res.send('API is Running')
   });
 }
+
+
 
 // deploy 자동화
 // 1.frontend build -> build 폴더 backend로 이동 -> 서버 실행
