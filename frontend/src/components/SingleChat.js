@@ -13,7 +13,8 @@ import axios from 'axios';
 import io from 'socket.io-client';
 
 
-const ENDPOINT = 'http://localhost:5000';
+//const ENDPOINT = 'http://localhost:5000';
+const ENDPOINT = 'https://buddybirdy.herokuapp.com';
 let socket;
 let selectedChatCompare;
 
