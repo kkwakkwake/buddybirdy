@@ -24,6 +24,10 @@
 
 
 </br>
+## 4.ERD
+![buddybirdyerd](https://user-images.githubusercontent.com/99951752/191229383-cf572ef9-bbcf-4e43-bbe3-95dcca41678a.svg)
+
+</br>
 
 ## 4.트러블슈팅
 >  
