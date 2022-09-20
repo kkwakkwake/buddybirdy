@@ -25,8 +25,8 @@
 
 </br>
 
-## 4. 회고
-  
+## 4. ERD
+![buddybirdyerd](https://user-images.githubusercontent.com/99951752/191230309-3154b318-cb12-4d36-92fc-4cfebc117b0d.svg)
 
 </br>
 
