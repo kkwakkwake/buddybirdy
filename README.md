@@ -1,6 +1,6 @@
 # 📚 buddybirdy
 > socket.io를 활용한 실시간 채팅앱   
-> 
+> https://buddybirdy.herokuapp.com/
 
 </br>
 
